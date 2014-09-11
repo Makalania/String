@@ -1,0 +1,43 @@
+public class Solution {
+    public boolean isPalindrome(String s) {
+        if (s == null || s.length() == 0) {
+            return true;
+        }
+        
+        int len = s.length();
+        char[] array = s.toLowerCase().toCharArray();
+        int start = 0;
+        int end = len - 1;
+        
+        while (start < end) {
+
+            if (isNotAlphanumeric(array, start)) {
+                start++;
+            }
+            
+            else if (isNotAlphanumeric(array, end)) {
+                end--;
+            }
+            
+            else if (array[start] == array[end]) {
+                start++;
+                end--;
+            }
+            else {
+                return false;
+            }
+        }
+        
+        return true;
+    }
+    
+    private boolean isNotAlphanumeric(char[] array, int pos) {
+        char cur = array[pos];
+        
+        if (((cur <= '9') && (cur >= '0')) || ((cur <= 'z') && (cur >= 'a'))) {
+            return false;
+        }
+        
+        return true;
+    }
+}
